@@ -28,6 +28,8 @@ def get_items():
     return jsonify(items=["item1", "item2", "item3"])
 @app.route('/login', methods=['POST'])
 
+#Teste para workflow GitHub Actions
+
 
 def login():
     access_token = create_access_token(identity="user")
