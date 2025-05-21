@@ -35,6 +35,9 @@ def login():
 
 @app.route('/protected', methods=['GET'])
 @jwt_required()
+
+# Teste para workflow GitHub Actions
+
 def protected():
     return jsonify(message="Protected route")
 
