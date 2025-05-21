@@ -31,9 +31,3 @@ jobs:
 
       - name: Run tests
         run: docker exec flask-api python test_app.py
-
-      - name: Cleanup
-        if: always()
-        run: |
-          docker stop flask-api
-          docker rm flask-api
