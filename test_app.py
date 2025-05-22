@@ -27,5 +27,35 @@ class APITestCase(unittest.TestCase):
         response = self.client.get('/protected')
         self.assertEqual(response.status_code, 401)
 
+
+
+##########################################################################################################
+
+    def test_login_access_token_is_string(self):
+        response = self.client.post('/login')
+        token = response.json.get("access_token")
+        self.assertIsInstance(token, str)
+
+
+    def test_route_not_found(self):
+        response = self.client.get('/rota-invalida')
+        self.assertEqual(response.status_code, 404)
+
+    def test_items_route(self):
+        response = self.client.get('/items')
+        self.assertEqual(response.status_code, 200)
+
+        # Verifica se é JSON
+        self.assertTrue(response.is_json)
+
+        data = response.get_json()
+
+        # Verifica se contém a chave "items"
+        self.assertIn("items", data)
+
+        # Verifica se é uma lista com os itens esperados
+        self.assertIsInstance(data["items"], list)
+        self.assertListEqual(data["items"], ["item1", "item2", "item3"])
+
 if __name__ == '__main__':
     unittest.main()
