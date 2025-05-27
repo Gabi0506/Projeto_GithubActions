@@ -5,7 +5,8 @@ from flask_jwt_extended import JWTManager, create_access_token,jwt_required # ty
 
 app = Flask(__name__)
 # Configuração do JWT
-app.config['JWT_SECRET_KEY'] = 'your_secret_key'
+app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY')
+
 
 jwt = JWTManager(app)
 ### Swagger UI ###
@@ -42,4 +43,4 @@ def protected():
     return jsonify(message="Protected route")
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=1313)
+
