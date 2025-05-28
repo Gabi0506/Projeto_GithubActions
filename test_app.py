@@ -36,9 +36,14 @@ class APITestCase(unittest.TestCase):
         response = self.client.get('/rota_inexistente')
         self.assertEqual(response.status_code, 404)
 
-   @app.route('/status', methods=['GET'])
-   def status():
-     return jsonify(status="ok")
+    def test_get_items(self):
+        response = self.client.get('/items')
+        self.assertEqual(response.status_code, 200)
+        self.assertIsInstance(response.json, dict)
+        self.assertIn('items', response.json)
+        self.assertIsInstance(response.json['items'], list)
+        self.assertGreater(len(response.json['items']), 0)
+  
 
         
     def test_status_route(self):
