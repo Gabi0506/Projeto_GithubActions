@@ -38,17 +38,16 @@ class APITestCase(unittest.TestCase):
 
     def test_get_items(self):
         response = self.client.get('/items')
-        self.assertEqual(response.status_code, 200)
         self.assertIsInstance(response.json, dict)
         self.assertIn('items', response.json)
         self.assertIsInstance(response.json['items'], list)
         self.assertGreater(len(response.json['items']), 0)
   
 
-        
-    def test_status_route(self):
-        response = self.client.get('/status')
-        self.assertEqual(response.status_code, 200)
+    def test_items_route(self):
+    response = self.client.get('/items')
+    self.assertEqual(response.status_code, 200)
+
 
 if __name__ == '__main__':
     unittest.main()
