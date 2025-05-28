@@ -27,5 +27,22 @@ class APITestCase(unittest.TestCase):
         response = self.client.get('/protected')
         self.assertEqual(response.status_code, 401)
 
+
+################################################
+
+
+    def test_404_not_found(self):
+        # Testar rota inexistente, deve retornar 404
+        response = self.client.get('/rota_inexistente')
+        self.assertEqual(response.status_code, 404)
+
+    def test_status_response_content(self):
+        response = self.client.get('/status')
+        self.assertIn('status', response.json)
+        
+    def test_status_route(self):
+        response = self.client.get('/status')
+        self.assertEqual(response.status_code, 200)
+
 if __name__ == '__main__':
     unittest.main()
