@@ -1,6 +1,8 @@
 from flask import Flask, jsonify # type: ignore
 from flask_swagger_ui import get_swaggerui_blueprint # type: ignore
 from flask_jwt_extended import JWTManager, create_access_token,jwt_required # type: ignore
+import os
+
 
 
 app = Flask(__name__)
