@@ -4,7 +4,6 @@ on:
   push:
     branches: [ "minha-branch-teste" ]
 
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -16,7 +15,7 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
-    needs: build  # Só executa depois do build
+    needs: build
 
     steps:
       - uses: actions/checkout@v3
@@ -25,7 +24,7 @@ jobs:
         run: docker build -t flask-api-test .
 
       - name: Run container
-        run: docker run -d -p 1313:1313 --name flask-api flask-api-test
+        run: docker run -d -p 1313:1313 --name flask-api -e JWT_SECRET_KEY="minha-chave-secreta" flask-api-test
 
       - name: Wait for API to be ready
         run: sleep 5
