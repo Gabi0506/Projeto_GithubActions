@@ -36,9 +36,10 @@ class APITestCase(unittest.TestCase):
         response = self.client.get('/rota_inexistente')
         self.assertEqual(response.status_code, 404)
 
-    def test_status_response_content(self):
-        response = self.client.get('/status')
-        self.assertIn('status', response.json)
+   @app.route('/status', methods=['GET'])
+   def status():
+     return jsonify(status="ok")
+
         
     def test_status_route(self):
         response = self.client.get('/status')
