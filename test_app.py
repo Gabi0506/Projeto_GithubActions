@@ -13,7 +13,7 @@ class APITestCase(unittest.TestCase):
 
     def test_home(self):
         response = self.client.get('/')
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 201)
         self.assertEqual(response.json, {"message": "API is running"})
 
     def test_login(self):
