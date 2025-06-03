@@ -3,7 +3,7 @@ from flask_swagger_ui import get_swaggerui_blueprint # type: ignore
 from flask_jwt_extended import JWTManager, create_access_token,jwt_required # type: ignore
 import os
 
-#oii
+####
 
 app = Flask(__name__)
 # Configuração do JWT
